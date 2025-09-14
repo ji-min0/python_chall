@@ -28,3 +28,23 @@
 
  <p>출력은 2줄이다. 1번째 줄엔 제출하지 않은 학생의 출석번호 중 가장 작은 것을 출력하고, 2번째 줄에선 그 다음 출석번호를 출력한다.</p>
 
+
+
+## 해결 과정
+학생들을 집합(set)으로 묶어서 전체 학생 집합에서 제출한 학생 집합을 빼는 것으로 접근했다.
+차집합은 - 혹은 set.defference( , ) 으로 접근할 수 있었다. 
+
+이때, .sort는 list의 집합이라서 틀렸었다.
+
+그래서 sorted로 해결했다.
+
+## 코드 
+```python
+students = set(range(1,31))
+submitted_students = {int(input()) for i in range(28)}
+
+not_submitted = set.difference(students, submitted_students)
+
+for n in sorted(not_submitted): 
+    print(n)
+
