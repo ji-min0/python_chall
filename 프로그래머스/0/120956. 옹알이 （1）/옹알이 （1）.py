@@ -1,17 +1,21 @@
 def solution(babbling):
     sounds = ["aya", "ye", "woo", "ma"]
     answer = 0
-    
+
     for word in babbling:
         checked = word
-        
-        while checked: 
+        is_possible = True
+
+        while checked:
             for s in sounds:
                 if checked.startswith(s):
                     checked = checked.replace(s, "", 1)
-                    break  
-            else: 
+                    break
+            else:
+                is_possible = False
                 break
-        else:
+
+        if is_possible:
             answer += 1
+
     return answer
