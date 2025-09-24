@@ -1,25 +1,32 @@
-N = int(input())
-max_s = 1000000
+"""
+피드백
+max 값을 1000000으로 고정하지 말고 입력에서 최댓값 받기
+print에서 바로 1 빼주기
+"""
 
-s = [0] * N
-counts = [0] * (max_s + 1)
+
+N = int(input())
+nums = []
+max_num = 0
 
 for i in range(N):
-    num = int(input())
-    s[i] = num
+    now_num = int(input())
+    nums.append(now_num)
+    if now_num > max_num:
+        max_num = now_num
+
+counts = [0] * (max_num + 1)
+for num in nums:
     counts[num] += 1
 
-for i in range(N):
-    now = s[i]
+for now_num in nums:
     total_taps = 0
-
-    for j in range(1, int(now ** 0.5) + 1):
-        if now % j == 0:
+    
+    for j in range(1, int(now_num ** 0.5) + 1):
+        if now_num % j == 0:
             total_taps += counts[j]
+            
+            if j * j != now_num:
+                total_taps += counts[now_num // j]
 
-            if j * j != now:
-                total_taps += counts[now // j]
-
-    total_taps -= 1
-
-    print(total_taps)
+    print(total_taps - 1)
